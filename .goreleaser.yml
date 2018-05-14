@@ -1,5 +1,46 @@
 builds:
-  - binary: vault
+  - binary: vault-push
+    main: cmd/vault-push/main.go
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - 386
+      - arm64
+  - binary: vault-pull
+    main: cmd/vault-pull/main.go
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - 386
+      - arm64
+  - binary: vault-sync
+    main: cmd/vault-sync/main.go
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - 386
+      - arm64
+  - binary: vault-drop
+    main: cmd/vault-drop/main.go
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - 386
+      - arm64
+  - binary: vault-http-node
+    main: cmd/vault-http-node/main.go
     goos:
       - windows
       - darwin
