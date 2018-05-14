@@ -1,0 +1,10 @@
+builds:
+  - binary: vault
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - 386
+      - arm64
