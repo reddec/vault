@@ -14,8 +14,22 @@ var config struct {
 	} `positional-args:"yes" required:"yes"`
 }
 
+var (
+	version     = "dev"
+	commit      = "none"
+	date        = "unknown"
+	name        = "vault-pull"
+	description = `
+Fetch object from net and write it to stdout
+`
+)
+
 func main() {
-	_, err := flags.Parse(&config)
+	parser := flags.NewParser(&config, flags.Default)
+	parser.ShortDescription = fmt.Sprint(name, " part of VAULT tools - distributes master-less object storage")
+	parser.LongDescription = fmt.Sprint("version: ", version, " commit: ", commit, " date: ", date, "\n", description)
+
+	_, err := parser.Parse()
 	if err != nil {
 		os.Exit(1)
 	}

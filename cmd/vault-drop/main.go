@@ -14,8 +14,24 @@ var config struct {
 	} `positional-args:"yes" required:"yes"`
 }
 
+var (
+	version     = "dev"
+	commit      = "none"
+	date        = "unknown"
+	name        = "vault-drop"
+	description = `
+Remove object from network by ID. 
+There is no guarantee that object will be deleted when not all nodes reachable.
+Useful for regular cleaning
+`
+)
+
 func main() {
-	_, err := flags.Parse(&config)
+	parser := flags.NewParser(&config, flags.Default)
+	parser.ShortDescription = fmt.Sprint(name, " part of VAULT tools - distributes master-less object storage")
+	parser.LongDescription = fmt.Sprint("version: ", version, " commit: ", commit, " date: ", date, "\n", description)
+
+	_, err := parser.Parse()
 	if err != nil {
 		os.Exit(1)
 	}

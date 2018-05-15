@@ -14,6 +14,17 @@ var config struct {
 	DbPath string `short:"d" long:"db" env:"DB" description:"Path to directory with database" default:"data"`
 }
 
+var (
+	version     = "dev"
+	commit      = "none"
+	date        = "unknown"
+	name        = "vault-http-node"
+	description = `
+Server simple HTTP node storage.
+Keeps chunks in BoltDB.
+`
+)
+
 func run() error {
 	db, err := bolt.Open(config.DbPath, 0755, nil)
 	if err != nil {
@@ -125,7 +136,11 @@ func run() error {
 }
 
 func main() {
-	_, err := flags.Parse(&config)
+	parser := flags.NewParser(&config, flags.Default)
+	parser.ShortDescription = fmt.Sprint(name, " part of VAULT tools - distributes master-less object storage")
+	parser.LongDescription = fmt.Sprint("version: ", version, " commit: ", commit, " date: ", date, "\n", description)
+
+	_, err := parser.Parse()
 	if err != nil {
 		os.Exit(1)
 	}

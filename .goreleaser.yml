@@ -25,9 +25,11 @@ builds:
       - windows
       - darwin
       - linux
+      - freebsd
     goarch:
       - amd64
       - 386
+      - arm
       - arm64
   - binary: vault-drop
     main: cmd/vault-drop/main.go
@@ -49,3 +51,13 @@ builds:
       - amd64
       - 386
       - arm64
+archive:
+  format: tar.gz
+
+nfpm:
+  homepage: https://github.com/reddec/vault
+  description: Dummy distributed master-less replicated object storage
+  maintainer: RedDec <owner@reddec.net>
+  license: MIT
+  formats:
+    - deb
